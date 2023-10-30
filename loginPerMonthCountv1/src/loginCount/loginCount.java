@@ -35,6 +35,9 @@ public class loginCount {
 				//设置最终输出的kv数据类型
 				loginCount.setOutputKeyClass(memberLogin.class);
 				loginCount.setOutputValueClass(IntWritable.class);
+				loginCount.setCombinerClass(loginCountCombiner.class);
+				loginCount.setPartitionerClass(loginCountPartitioner.class);
+				loginCount.setNumReduceTasks(12);
 				
 				//设置要处理的文本数据所存放的路径
 				FileInputFormat.setInputPaths(loginCount, new Path(otherArgs[0]));
