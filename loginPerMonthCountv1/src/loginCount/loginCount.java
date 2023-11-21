@@ -6,10 +6,9 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import org.apache.hadoop.util.GenericOptionsParser;
-
 import loginCount.loginCountMapper;
 import loginCount.loginCountReducer;
+import loginCount.JarUtil;
 import loginCount.loginCount;
 
 public class loginCount {
@@ -17,7 +16,8 @@ public class loginCount {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 				Configuration conf = new Configuration();
-				String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
+//				String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
+				conf.set("mapreduce.job.jar",JarUtil.jar(loginCount.class));
 				Job loginCount = Job.getInstance(conf,"login count");
 				
 				//重要：指定本job所在的jar包
@@ -40,8 +40,8 @@ public class loginCount {
 				loginCount.setNumReduceTasks(12);
 				
 				//设置要处理的文本数据所存放的路径
-				FileInputFormat.setInputPaths(loginCount, new Path(otherArgs[0]));
-				FileOutputFormat.setOutputPath(loginCount, new Path(otherArgs[1]));
+				FileInputFormat.setInputPaths(loginCount, new Path("hdfs://master:8020/user_login.txt"));
+				FileOutputFormat.setOutputPath(loginCount, new Path("hdfs://master:8020/output3"));
 				
 				//提交job给hadoop集群(Yarn)
 				loginCount.waitForCompletion(true);
