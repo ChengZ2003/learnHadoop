@@ -14,13 +14,6 @@ public class loginShuffleMapper extends Mapper<LongWritable,   Text, IntWritable
 		String line = value.toString();
 		//将这行文本切分成单词
 		String[] words = line.split("\t");
-		
-		//输出<单词，1>
-//		for(String word:words){				  // int
-//			context.write(new Text(word), new IntWritable(1));
-//						//<   key       ,     value>
-//		}
-//		context.write(new Text(words[0]), new IntWritable(1));
 		context.write(new IntWritable(Integer.parseInt(words[1])), new Text(words[0]));
 	}
 }

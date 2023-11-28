@@ -14,13 +14,6 @@ public class loginCountMapper extends Mapper<LongWritable,   Text, Text,  IntWri
 		//将这行文本切分成单词
 		String[] words = line.split(",");
 		String userLogin = words[0] + "," + words[1].substring(0,7);
-				
-		
-		//输出<单词，1>
-//		for(String word:words){				  // int
-//			context.write(new Text(word), new IntWritable(1));
-//						//<   key       ,     value>
-//		}
 		context.write(new Text(userLogin), new IntWritable(1));
 	}
 }

@@ -14,7 +14,6 @@ public class loginCountReducer extends Reducer<Text, IntWritable, Text, IntWrita
 		for(IntWritable value:values){
 			count+=value.get();
 		}
-		
 		//输出这个单词的统计结果
 		context.write(key, new IntWritable(count));
 	}

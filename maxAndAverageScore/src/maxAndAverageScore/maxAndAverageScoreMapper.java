@@ -13,7 +13,7 @@ public class maxAndAverageScoreMapper extends Mapper<LongWritable,   Text, Text,
 		String line = value.toString();
 		//将这行文本切分成单词
 		String[] words = line.split(" ");
-		
 		context.write(new Text(words[0]), new IntWritable(Integer.parseInt(words[1])));
 	}
 }
+
