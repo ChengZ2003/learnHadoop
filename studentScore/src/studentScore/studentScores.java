@@ -16,7 +16,7 @@ public class studentScores implements WritableComparable<studentScores> {
 
 	public studentScores() {
 	}
-	
+
 	public studentScores(String studentName, String studentNo, String classNo, int subject1Score, int subject2Score,
 			int subject3Score) {
 		super();
@@ -79,7 +79,7 @@ public class studentScores implements WritableComparable<studentScores> {
 	public double getAverageScore() {
 		return (this.subject1Score + this.subject2Score + this.subject3Score) / 3.0;
 	}
-	
+
 	public void readFields(DataInput input) throws IOException {
 		this.studentName = input.readUTF();
 		this.studentNo = input.readUTF();
@@ -88,7 +88,7 @@ public class studentScores implements WritableComparable<studentScores> {
 		this.subject2Score = input.readInt();
 		this.subject3Score = input.readInt();
 	}
-	
+
 	public void write(DataOutput out) throws IOException {
 		out.writeUTF(this.studentName);
 		out.writeUTF(this.studentNo);
